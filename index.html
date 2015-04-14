@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fuel Economy Prediction</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Fuel Economy Prediction">
+  <meta name="author" content="Keith G. Williams">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Fuel Economy Prediction</h1>
+    <h2>A Shiny App</h2>
+    <p>Keith G. Williams<br/>JHU Data Science Specialization on Coursera - Developing Data Products</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>The Problem</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>As demand increases for fuel efficient cars, automobile designers need to know how to meet this demand without sacrificing other features, such as performance, luxury, cargo space, etc.</p></li>
+<li><p>Therefore, one needs to know what factors contribute to fuel efficiency, and quantify their impact.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>The Model</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A linear model was built to make the predictions, which identifies weight, horspower, number of cylinders, and transmission type as the most important factors in determining fuel economy.</li>
+</ul>
+
+<p>\[MPG_i = \beta_0 + \beta_1 transmission_i + \beta_2 weight_i + \beta_3 cylinders_i + \beta_4 horsepower_i + e_i\]</p>
+
+<ul>
+<li>Coefficients (betas)</li>
+</ul>
+
+<pre><code>## (Intercept)    ammanual          wt        cyl6        cyl8          hp 
+## 33.70832390  1.80921138 -2.49682942 -3.03134449 -2.16367532 -0.03210943
+</code></pre>
+
+<ul>
+<li>R-squared</li>
+</ul>
+
+<pre><code>## [1] 0.8658799
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Why Use This App?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>This model is cumbersome for a designer to use when comparing possible design parameters for a new car.</p></li>
+<li><p>MPG prediction calcluation for an automatic, 3,325 lb. car, with 4 cylinders, and 123 hp
+\[\hat{MPG} = \beta_0 + \beta_1 (0) + \beta_2 (3.325) + \beta_3 (0) + \beta_4 (0) + \beta_5 (123)\]</p></li>
+</ul>
+
+<pre><code class="r">mpg_hat &lt;- fit$coeff[1] + fit$coeff[2] * 0 + fit$coeff[3] * 3.325 + fit$coeff[4] * 0 + fit$coeff[5] * 0 + fit$coeff[6] * 123
+mpg_hat
+</code></pre>
+
+<pre><code>## (Intercept) 
+##    21.45691
+</code></pre>
+
+<ul>
+<li><p>Rather, it would be nice if these predictions could be made quickly with an intuitive graphical user interface and a measure of uncertainty.</p></li>
+<li><p>The Shiny App does just this.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Try It Out</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="hello-shiny.png" alt="ShinyApp" title="Inputs on Left, Prediction on Right">
+<a href="https://keithgw.shinyapps.io/Hello-Shiny/">https://keithgw.shinyapps.io/Hello-Shiny/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='The Problem'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The Model'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Why Use This App?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Try It Out'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
